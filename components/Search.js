@@ -3,12 +3,17 @@ import { useState } from "react";
 
 export default function Search() {
   const [location, setLocation] = useState("");
+  const [guests, setGuests] = useState("");
+  const [category, setCategory] = useState("");
+
   const router = useRouter();
   const submitHandler = (e) => {
     e.preventDefault();
 
     if (location.trim()) {
-      router.push(`/?location=${location}`);
+      router.push(
+        `/?location=${location}&guests=${guests}&category=${category}`
+      );
     } else {
       router.push(`/`);
     }
@@ -32,7 +37,7 @@ export default function Search() {
               />
             </div>
 
-            {/* <div className="form-group">
+            <div className="form-group">
               <label htmlFor="guest_field">No. of Guests</label>
               <select
                 className="form-control"
@@ -62,7 +67,7 @@ export default function Search() {
                   </option>
                 ))}
               </select>
-            </div> */}
+            </div>
 
             <button type="submit" className="btn btn-block py-2">
               Search

@@ -15,7 +15,7 @@ export default function Home() {
   const { rooms, resPerPage, roomsCount, filteredRoomsCount, error } =
     useSelector((state) => state.allRooms);
 
-  const { location, page = 1 } = router.query;
+  const { category, guests, location, page = 1 } = router.query;
 
   const handlePagination = (pageNumber) => {
     window.location.href = `/?page=${pageNumber}`;
@@ -45,11 +45,10 @@ export default function Home() {
           <i className="fa fa-arrow-left"></i> Back to Search
         </Link>
         <div className="row">
-          {rooms ? (
-            // console.log(rooms)
+          {rooms.length ? (
             rooms.map((room) => <RoomItem key={room._id} room={room} />)
           ) : (
-            <div className="alert alert-danger">
+            <div className="alert alert-danger mt-5 w-100">
               <b>No Rooms.</b>
             </div>
           )}
