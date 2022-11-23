@@ -29,6 +29,8 @@ export default function Home({ users }) {
   );
 }
 
+// Static Site Generation
+
 export async function getStaticProps() {
   const res = await fetch(`https://jsonplaceholder.typicode.com/users`);
 

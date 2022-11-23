@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 export default function Header() {
@@ -5,9 +6,15 @@ export default function Header() {
     <nav className="navbar row justify-content-center sticky-top">
       <div className="container">
         <div className="col-3 p-0">
-          <div className="navbar-brand">
-            <img style={{ cursor: "pointer" }} src="/images/bookit_logo.png" alt="BookIT" />
-          </div>
+          <Link href="/">
+            <div className="navbar-brand">
+              <img
+                style={{ cursor: "pointer" }}
+                src="/images/bookit_logo.png"
+                alt="BookIT"
+              />
+            </div>
+          </Link>
         </div>
 
         <div className="col-3 mt-3 mt-md-0 text-center">

@@ -26,6 +26,8 @@ export default function Home({ user }) {
   );
 }
 
+// Server Side rendering
+
 // export async function getServerSideProps(context) {
 //   const res = await fetch(
 //     `https://jsonplaceholder.typicode.com/users/${context.params.id}`
@@ -40,7 +42,7 @@ export default function Home({ user }) {
 // }
 
 
-// Client side 
+// Dynamic routing using Static props
 
 export async function getStaticProps(context) {
   const res = await fetch(
