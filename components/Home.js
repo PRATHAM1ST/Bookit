@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { clearErrors } from "../redux/actions/roomActions";
 import Pagination from "react-js-pagination";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -14,11 +15,16 @@ export default function Home() {
   const { rooms, resPerPage, roomsCount, filteredRoomsCount, error } =
     useSelector((state) => state.allRooms);
 
-  const { page = 1 } = router.query;
+  const { location, page = 1 } = router.query;
 
   const handlePagination = (pageNumber) => {
     window.location.href = `/?page=${pageNumber}`;
   };
+
+  let count = roomsCount;
+  if(location){
+    count = filteredRoomsCount;
+  }
 
   useEffect(() => {
     if (error) {
@@ -30,12 +36,14 @@ export default function Home() {
   return (
     <>
       <section id="rooms" className="container mt-5">
-        <h2 className="mb-3 ml-2 stays-heading">Stays in New York</h2>
+        <h2 className="mb-3 ml-2 stays-heading">
+          {location ? "Rooms in " + location : "All Rooms"}
+        </h2>
 
-        <a href="#" className="ml-2 back-to-search">
+        <Link href="/search" className="ml-2 back-to-search">
           {" "}
           <i className="fa fa-arrow-left"></i> Back to Search
-        </a>
+        </Link>
         <div className="row">
           {rooms ? (
             // console.log(rooms)
@@ -48,7 +56,7 @@ export default function Home() {
         </div>
       </section>
 
-      {resPerPage < roomsCount && (
+      {resPerPage < count && (
         <div className="d-flex justify-content-center mt-5">
           <Pagination
             activePage={handlePagination}
